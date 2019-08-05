@@ -1,0 +1,10 @@
+#!/bin/sh
+sudo pacman -S--noconfirm tftpd-hpa &&
+sudo echo "tftpd:ALL" >> /etc/hosts.allow &&
+sudo echo "in.tftpd:ALL" >> /etc/hosts.allow &&
+systemctl enable tftpd.service &&
+
+sudo mkdir /srv/nfs4
+sudo echo "\n/srv/nfs4 *(rw,sync,nohide)" >> /etc/exports &&
+sudo exportfs -arv &&
+systemctl enable nfs-server.service &&
