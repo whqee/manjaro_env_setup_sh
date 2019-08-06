@@ -1,0 +1,7 @@
+#!/bin/sh
+echo "start installing qq-office and wechat ..."
+sudo pacman -S --noconfirm deepin-wine-wechat &&
+echo "wechat installed."
+sudo pacman -S --noconfirm deepin-wine-tim &&
+echo "TIM installed."
+echo "exiting script ..."
