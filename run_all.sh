@@ -30,7 +30,7 @@ echo "export XMODIFIERS=@im=fcitx" >> ~/.xprofile
 echo "done. exiting sogoupinyin script...";
 
 echo "installing wps ..."
-sudo pacman -S --noconfirm wps-office bash-completion code lzop &&
+sudo pacman -S --noconfirm wps-office bash-completion code lzop minicom &&
 echo "done."
 
 echo "start installing qq-office and wechat ..."

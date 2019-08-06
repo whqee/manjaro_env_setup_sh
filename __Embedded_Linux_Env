@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo pacman -S --noconfirm lzop &&
+sudo pacman -S --noconfirm lzop minicom &&
