@@ -40,6 +40,11 @@ sudo pacman -S --noconfirm deepin-wine-tim &&
 echo "TIM installed."
 echo "exiting script ..."
 
+echo "start setting nvidia-driver..."
+sudo pacman -S bumblebee nvidia opencl-nvidia lib32-nvidia-utils lib32-opencl-nvidia mesa lib32-mesa-libgl xf86-video-int &&
+sudo sed -i "s/PMMethod=auto/PMMethod=bbswitch/g" /etc/bumblebee/bumblebee.conf &&
+echo "done.(nvidia)"
+
 echo "setuping tftpd...";
 sudo pacman -S --noconfirm tftpd-hpa &&
 sudo echo "tftpd:ALL" >> /etc/hosts.allow &&
