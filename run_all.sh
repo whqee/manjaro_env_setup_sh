@@ -1,10 +1,10 @@
 #!/bin/bash
 echo "Start running pacman_init script ...";
-sudo pacman-mirros -i -c China -m rank &&
+sudo pacman-mirrors -g &&
 echo "Selected fastest mirrors." ;
 sudo echo "[archlinuxcn]" >> /etc/pacman.conf &&
 sudo echo "SigLevel = Optional TrustAll" >> /etc/pacman.conf &&
-sudo echo "Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch" >> /etc/pacman.conf &&
+sudo echo "Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/\$arch" >> /etc/pacman.conf &&
 echo "added archlinuxcn_tuna to /etc/pacman.conf ";
 sudo sed -i "1iServer = https://mirrors.scau.edu.cn/archlinux/\$repo/os/\$arch" /etc/pacman.d/mirrorlist &&
 echo "added SCAU mirrors(archlinuxcn) to mirrorlist.";
