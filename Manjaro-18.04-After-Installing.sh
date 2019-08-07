@@ -59,6 +59,8 @@ sudo exportfs -arv &&
 
 echo "exiting tftp-nfs script ...";
 
+sudo pacman -S --noconfirm timeshift vim electron-ssr netease-cloud-music &&
+
 sudo pacman -S --noconfirm `cat app.list` | echo "Failed at app.list, please check." &&
 echo "Done all."
 echo "If you wanna run tftpd and nfs-server automatically after boot, \
