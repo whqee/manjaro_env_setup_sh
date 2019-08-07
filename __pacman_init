@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "Start running pacman_init script ...";
-sudo pacman-mirros -i -c China -m rank &&
+sudo pacman-mirros -g &&
 echo "Selected fastest mirrors." ;
 sudo echo "[archlinuxcn]" >> /etc/pacman.conf &&
 sudo echo "SigLevel = Optional TrustAll" >> /etc/pacman.conf &&
