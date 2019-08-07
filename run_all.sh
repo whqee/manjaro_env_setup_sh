@@ -41,7 +41,8 @@ echo "TIM installed."
 echo "exiting script ..."
 
 echo "start setting nvidia-driver..."
-sudo pacman -S bumblebee nvidia opencl-nvidia lib32-nvidia-utils lib32-opencl-nvidia mesa lib32-mesa-libgl xf86-video-int &&
+sudo pacman -S --noconfirm bumblebee nvidia opencl-nvidia lib32-nvidia-utils lib32-opencl-nvidia mesa lib32-mesa-libgl xf86-video-int &&
+sudo pacman -S --noconfirm virtualgl lib32-virtualgl lib32-primus primus &&
 sudo sed -i "s/PMMethod=auto/PMMethod=bbswitch/g" /etc/bumblebee/bumblebee.conf &&
 echo "done.(nvidia)"
 
