@@ -1,4 +1,4 @@
 #!/bin/sh
 echo "installing wps ..."
-sudo pacman -S --noconfirm wps-office bash-completion code &&
+sudo pacman -S --noconfirm wps-office ttf-wps-fonts bash-completion code &&
 echo "done."
