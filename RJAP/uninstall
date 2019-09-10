@@ -1,5 +1,6 @@
 #!/bin/sh
-sed '/_id_passwd/d' /etc/profile
+sed -i '/_id_passwd/d' /etc/profile
 sudo rm /etc/systemd/system/AP.service
 sudo rm /etc/systemd/system/ruijie.service
+sudo rm -r /opt/ruijie
 

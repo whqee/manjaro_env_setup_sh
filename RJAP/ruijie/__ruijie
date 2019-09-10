@@ -1,4 +1,3 @@
 #!/bin/sh
-cd /opt/ruijie/
-sudo nohup ./RG_SU_For_Linux_1_30_Setup/rjsupplicant/rjsupplicant.sh -u $1@有线1x上网 -p $2 -d 1 &
-cd -
+
+sudo nohup /opt/ruijie/RG_SU_For_Linux_1_30_Setup/rjsupplicant/rjsupplicant.sh -u $1@有线1x上网 -p $2 -d 1 >/tmp/ruijie.log 2>&1 &

@@ -1,10 +1,10 @@
 #!/bin/sh
 sudo cp -r ruijie /opt/ruijie &&
-echo "alias set_ap_id_passwd=\"/opt/ruijie/set_ap_id_passwd\"" >> /etc/profile
-echo "alias set_rj_id_passwd=\"/opt/ruijie/set_rj_id_passwd\"" >> /etc/profile
-sudo ln -s /opt/ruijie/ruijie.service /etc/systemd/system/
-sudo ln -s /opt/ruijie/AP.service /etc/systemd/system/
+sudo echo "alias set_ap_id_passwd=\"/opt/ruijie/set_ap_id_passwd\"" >> /etc/profile &&
+sudo echo "alias set_rj_id_passwd=\"/opt/ruijie/set_rj_id_passwd\"" >> /etc/profile
+sudo cp /opt/ruijie/ruijie.service /etc/systemd/system/
+sudo cp /opt/ruijie/AP.service /etc/systemd/system/
 
-echo "done. Please enable them by means of 'systemctl enable xx.service' if you need. \
+echo "Output：Done all.Please enable them by means of 'systemctl enable ruijie AP' if you need. \
 'sudo ./uninstall' to remove them."
 

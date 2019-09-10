@@ -1,22 +1,15 @@
 [Unit]
 Description=ruijie server and services
 ConditionPathExists=/opt/ruijie/
-Requires= network.target 
+After= network.target 
 
-After= network-online.target local-fs.target
-Before= AP.service
 
 [Service]
 Type=forking
 RemainAfterExit=yes
 SysVStartPriority=99
-StandardInput=tty
-ExecStartPre=
-ExecStart=/opt/ruijie/ruijie
-ExecStop=
-ExecStopPost=
-ExecStopPost=
 
+ExecStart=/opt/ruijie/ruijie
 ExecReload=/opt/ruijie/ruijie
 
 [Install]

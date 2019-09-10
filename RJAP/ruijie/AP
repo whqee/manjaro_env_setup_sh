@@ -1,4 +1,4 @@
 #!/bin/sh
-cd /opt/ruijie/
-__AP $(cat AP_id_passwd) && 
-cd -
+echo "APPPPPPPPPPP"
+sudo /opt/ruijie/__AP $(cat /opt/ruijie/AP_id_passwd) 
+

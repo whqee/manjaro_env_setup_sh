@@ -1,4 +1,4 @@
 #!/bin/sh
 sudo iw dev wlp3s0 interface add wlan1 type __ap
 sudo ip link set dev wlan1 address 22:33:44:dd:ff:00
-sudo create_ap -c 11 wlan1 enp2s0 $1 $2
+sudo nohup create_ap -c 11 wlan1 enp2s0 $1 $2 >/tmp/AP.log 2>&1 &

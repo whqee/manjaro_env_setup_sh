@@ -3,19 +3,12 @@ Description=AP server and services
 ConditionPathExists=/opt/ruijie
 Requires= network.target
 
-After= ruijie.service
 
 [Service]
-Type=oneshot
+Type=forking
 RemainAfterExit=yes
 SysVStartPriority=99
-StandardInput=tty
-ExecStartPre=
 ExecStart=/opt/ruijie/AP
-ExecStop=
-ExecStopPost=
-ExecStopPost=
-
 ExecReload=/opt/ruijie/AP
 
 [Install]

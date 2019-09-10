@@ -1,4 +1,4 @@
 #!/bin/sh
-cd /opt/ruijie/
-__ruijie $(cat RJ_id_passwd) &&
-cd -
+
+/opt/ruijie/__ruijie $(cat /opt/ruijie/RJ_id_passwd)
+
