@@ -59,7 +59,7 @@ sudo exportfs -arv &&
 
 echo "exiting tftp-nfs script ...";
 
-sudo pacman -S --noconfirm redshift timeshift vim electron-ssr netease-cloud-music &&
+sudo pacman -S --noconfirm create_ap redshift timeshift vim electron-ssr netease-cloud-music &&
 
 sudo pacman -S --noconfirm `cat app.list` | echo "Failed at app.list, please check." &&
 echo "Done all."

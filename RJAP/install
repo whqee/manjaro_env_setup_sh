@@ -1,0 +1,4 @@
+#!/bin/sh
+cp -r RG_SU_For_Linux_1_30_Setup ~/Documents/
+cp AP ~/.AP
+cp RJAP ~/.RJAP
