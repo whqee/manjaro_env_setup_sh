@@ -59,9 +59,15 @@ sudo exportfs -arv &&
 
 echo "exiting tftp-nfs script ...";
 
+echo "installing extra app..."
 sudo pacman -S --noconfirm create_ap redshift timeshift vim electron-ssr netease-cloud-music &&
 
 sudo pacman -S --noconfirm `cat app.list` | echo "Failed at app.list, please check." &&
+
+echo "Entering RJAP folder..."
+cd RJAP && ./install && cd -
+echo "done RJAP. Leaving..."
+
 echo "Done all."
 echo "If you wanna run tftpd and nfs-server automatically after boot, \
 enable them yourself by means of:\n \
