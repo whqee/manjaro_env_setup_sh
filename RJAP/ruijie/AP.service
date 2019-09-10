@@ -1,33 +1,22 @@
 [Unit]
 Description=AP server and services
-DefaultDependencies=no
-Requires= network.target 
-Requires= ruijie.service
-Wants=ruijie.service
-Wants=
-Wants=
+ConditionPathExists=/opt/ruijie
+Requires= network.target
 
 After= ruijie.service
-After= 
-After= 
-After= 
-Before= 
-
-# GSS services dependencies and ordering
-Wants=
-After=
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
 SysVStartPriority=99
+StandardInput=tty
 ExecStartPre=
-ExecStart=/home/whqee/.ruijie/.ruijie $(cat /home/whqee/.ruijie/.AP_id_passwd)
+ExecStart=/opt/ruijie/AP
 ExecStop=
 ExecStopPost=
 ExecStopPost=
 
-ExecReload=/home/whqee/.ruijie/.ruijie $(cat /home/whqee/.ruijie/.AP_id_passwd)
+ExecReload=/opt/ruijie/AP
 
 [Install]
 WantedBy=multi-user.target

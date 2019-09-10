@@ -1,5 +1,5 @@
 #!/bin/sh
-sed '/_id_passwd/d' /home/$(whoami)/.bashrc
-sudo rm /etc/systemd/system/multi-user.target.wants/AP.service
-sudo rm /etc/systemd/system/multi-user.target.wants/ruijie.service
+sed '/_id_passwd/d' /etc/profile
+sudo rm /etc/systemd/system/AP.service
+sudo rm /etc/systemd/system/ruijie.service
 

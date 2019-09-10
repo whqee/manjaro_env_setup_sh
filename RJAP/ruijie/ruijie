@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /opt/ruijie/
+__ruijie $(cat RJ_id_passwd) &&
+cd -

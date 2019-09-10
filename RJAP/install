@@ -1,7 +1,10 @@
 #!/bin/sh
-cp -r ruijie /home/$(whoami)/.ruijie &&
-echo "alias set_ap_id_passwd=\"/home/$(whoami)/.ruijie/set_ap_id_passwd\"" >> /home/$(whoami)/.bashrc
-echo "alias set_rj_id_passwd=\"/home/$(whoami)/.ruijie/set_rj_id_passwd\"" >> /home/$(whoami)/.bashrc
-sudo ln -s /home/$(whoami)/.ruijie/ruijie.service /etc/systemd/system/multi-user.target.wants/
-sudo ln -s /home/$(whoami)/.ruijie/AP.service /etc/systemd/system/multi-user.target.wants/
+sudo cp -r ruijie /opt/ruijie &&
+echo "alias set_ap_id_passwd=\"/opt/ruijie/set_ap_id_passwd\"" >> /etc/profile
+echo "alias set_rj_id_passwd=\"/opt/ruijie/set_rj_id_passwd\"" >> /etc/profile
+sudo ln -s /opt/ruijie/ruijie.service /etc/systemd/system/
+sudo ln -s /opt/ruijie/AP.service /etc/systemd/system/
+
+echo "done. Please enable them by means of 'systemctl enable xx.service' if you need. \
+'sudo ./uninstall' to remove them."
 

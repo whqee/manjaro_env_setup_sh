@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /opt/ruijie/
+__AP $(cat AP_id_passwd) && 
+cd -

@@ -1,33 +1,23 @@
 [Unit]
 Description=ruijie server and services
-DefaultDependencies=no
+ConditionPathExists=/opt/ruijie/
 Requires= network.target 
-Requires= 
-Wants=
-Wants=
-Wants=
 
 After= network-online.target local-fs.target
-After= 
-After= 
-After= 
 Before= AP.service
 
-# GSS services dependencies and ordering
-Wants=
-After=
-
 [Service]
-Type=oneshot
+Type=forking
 RemainAfterExit=yes
 SysVStartPriority=99
+StandardInput=tty
 ExecStartPre=
-ExecStart=/home/whqee/.ruijie/.ruijie $(cat /home/whqee/.ruijie/.RJ_id_passwd)
+ExecStart=/opt/ruijie/ruijie
 ExecStop=
 ExecStopPost=
 ExecStopPost=
 
-ExecReload=/home/whqee/.ruijie/.ruijie $(cat /home/whqee/.ruijie/.RJ_id_passwd)
+ExecReload=/opt/ruijie/ruijie
 
 [Install]
 WantedBy=multi-user.target
