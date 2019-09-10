@@ -1,4 +1,7 @@
 #!/bin/sh
-cp -r RG_SU_For_Linux_1_30_Setup ~/Documents/
-cp AP ~/.AP
-cp RJAP ~/.RJAP
+cp -r ruijie /home/$(whoami)/.ruijie &&
+echo "alias set_ap_id_passwd=\"/home/$(whoami)/.ruijie/set_ap_id_passwd\"" >> /home/$(whoami)/.bashrc
+echo "alias set_rj_id_passwd=\"/home/$(whoami)/.ruijie/set_rj_id_passwd\"" >> /home/$(whoami)/.bashrc
+sudo ln -s /home/$(whoami)/.ruijie/ruijie.service /etc/systemd/system/multi-user.target.wants/
+sudo ln -s /home/$(whoami)/.ruijie/AP.service /etc/systemd/system/multi-user.target.wants/
+
