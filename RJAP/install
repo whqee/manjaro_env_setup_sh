@@ -2,6 +2,7 @@
 sudo cp -r ruijie /opt/ruijie &&
 sudo echo "alias set_ap_id_passwd=\"/opt/ruijie/set_ap_id_passwd\"" >> /etc/profile &&
 sudo echo "alias set_rj_id_passwd=\"/opt/ruijie/set_rj_id_passwd\"" >> /etc/profile
+source /etc/profile
 sudo cp /opt/ruijie/ruijie.service /etc/systemd/system/
 sudo cp /opt/ruijie/AP.service /etc/systemd/system/
 
