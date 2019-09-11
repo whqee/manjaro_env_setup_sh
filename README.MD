@@ -12,3 +12,5 @@ Setup.sh里啥都有。
 默认热点id：ee 密码ee123456
 设置热点：set_ap_id_passwd id passwd
 设置锐捷：set_rj_id_passwd id passwd
+
+欢迎star
