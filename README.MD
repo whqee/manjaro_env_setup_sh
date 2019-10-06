@@ -9,7 +9,6 @@ Setup.sh里啥都有，建议使用前先阅读。
 
 （又换了新内核，真香.jpg）
 
-
 其中RJAP为设置锐捷客户端和AP热点，锐捷客户端为SCAU锐捷客户端。
 默认热点id：ee 密码ee123456
 设置热点：set_ap_id_passwd {id} {passwd}
