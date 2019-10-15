@@ -1,0 +1,18 @@
+[Unit]
+Description=check ruijie server and services
+ConditionPathExists=/opt/ruijie
+Requires= network.target
+Requires= ruijie.service
+After= ruijie.service
+After= AP.service
+
+[Service]
+Type=forking
+RemainAfterExit=yes
+SysVStartPriority=99
+ExecStart=/opt/ruijie/check_ruijie
+ExecReload=/opt/ruijie/check_ruijie
+ExecStop=/opt/ruijie/check_ruijie_stop
+
+[Install]
+WantedBy=multi-user.target

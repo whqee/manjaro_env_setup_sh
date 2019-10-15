@@ -1,11 +1,18 @@
 #!/bin/sh
+sudo pacman -S --noconfirm create_ap
 sudo cp -r ruijie /opt/ruijie &&
+sudo cp uninstall /opt/ruijie
 sudo echo "alias set_ap_id_passwd=\"/opt/ruijie/set_ap_id_passwd\"" >> /etc/profile &&
 sudo echo "alias set_rj_id_passwd=\"/opt/ruijie/set_rj_id_passwd\"" >> /etc/profile
 source /etc/profile
 sudo cp /opt/ruijie/ruijie.service /etc/systemd/system/
 sudo cp /opt/ruijie/AP.service /etc/systemd/system/
+sudo cp /opt/ruijie/check_ruijie.service /etc/systemd/system/
 
-echo "Output：Done all.Please enable them by means of 'systemctl enable ruijie AP' if you need. \
-'sudo ./uninstall' to remove them."
+echo "Output：Done all.Please enable them by means of \
+'systemctl enable ruijie AP check_ruijie' \
+if you need. \n \
+'sudo ./uninstall' to remove them.\n \
+若要自启，\n请输入‘ systemctl enable ruijie AP check_ruijie ’来激活它们，disable则反之。\n \
+卸载请‘ sudo ./uninstall ’"
 

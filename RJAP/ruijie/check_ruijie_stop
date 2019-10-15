@@ -1,0 +1,14 @@
+#!/bin/sh
+
+cd /tmp/check_ruijie
+
+if [ -f *.pid ]
+then
+	pid=`ls *.pid`
+	pid=${pid%.*}
+	sudo kill $pid
+	rm *.pid
+fi
+
+cd -
+sudo rm -r /tmp/check_ruijie

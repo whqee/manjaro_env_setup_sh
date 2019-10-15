@@ -1,3 +1,3 @@
 SCAU专用。如有需要请自行修改（especially username & passwd）
-create_ap 若无请自行安装。如 arch linux: sudo pacman -S create_ap
+create_ap 若自动安装失败自行安装。如 arch linux: sudo pacman -S create_ap
 

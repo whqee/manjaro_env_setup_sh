@@ -59,6 +59,11 @@ sudo exportfs -arv &&
 
 echo "exiting tftp-nfs script ...";
 
+echo "Add you to group uucp for r/w usb device"
+myname=`w -h`
+myname=${myname%%tty*}
+sudo gpasswd --add $myname uucp
+
 echo "installing extra app..."
 sudo pacman -S --noconfirm create_ap redshift timeshift vim electron-ssr netease-cloud-music &&
 
