@@ -14,7 +14,7 @@ fun(){
     else
 	    echo "time:$time"
 	    sudo /opt/ruijie/ruijie &&
-	    sudo /opt/ruijie/AP
+	    #sudo /opt/ruijie/AP
     fi
 }
 
@@ -32,5 +32,6 @@ check() {
     fi
 }
 sudo echo 
+sleep 30
 check
 echo "exited."
