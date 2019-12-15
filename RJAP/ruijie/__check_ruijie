@@ -13,8 +13,8 @@ fun(){
 	    fun
     else
 	    echo "time:$time"
-	    sudo /opt/ruijie/ruijie &&
-	    #sudo /opt/ruijie/AP
+	    sudo /opt/ruijie/ruijie
+	   # sudo /opt/ruijie/AP
     fi
 }
 

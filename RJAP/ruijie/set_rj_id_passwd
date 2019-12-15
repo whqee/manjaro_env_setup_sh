@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo echo "$1 $2" > /opt/ruijie/AP_id_passwd
+sudo echo "$1 $2" > /opt/ruijie/RJ_id_passwd
