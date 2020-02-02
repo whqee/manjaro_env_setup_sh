@@ -2,7 +2,7 @@
 最新这次的只测过kde。<br>
 理论上xfce也没问题。gnome版请看注意事项。
 
-## 安装设置的事项有：
+##安装设置的事项有：
 
 搜狗拼音、中文字体、tftpd、微信和qq、n卡驱动（bumblebee）、锐捷客户端(SCAU)、AP
 app.list里列出的软件<br>
@@ -21,7 +21,7 @@ app.list里列出的软件<br>
 设置锐捷：set_rj_id_passwd {id} {passwd}<br>
 （若无效请使用绝对路径）
 
-## 注意事项：
+##注意事项：
 安装搜狗输入法配置环境变量时候，不同显示管理器配置地方不同：<br>
 KDM, GDM, LightDM 等显示管理器，请使用 ~/.xprofile 
 
