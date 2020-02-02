@@ -1,10 +1,10 @@
-## 自动配置新装Manjaro
+## 新装Manjaro 自动化安装软件及配置环境
 最新这次的只测过kde。<br>
 理论上xfce也没问题。gnome版请看注意事项。
 
 ##安装设置的事项有：
 
-搜狗拼音、中文字体、tftpd、微信和qq、n卡驱动（bumblebee）、锐捷客户端(SCAU)、AP
+搜狗拼音、中文字体、tftpd、微信和qq、n卡驱动（bumblebee）、锐捷客户端(SCAU)、AP(热点)、
 app.list里列出的软件<br>
 
 ##食用：<br>
