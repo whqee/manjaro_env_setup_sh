@@ -1,5 +1,0 @@
-#!/bin/sh
-sudo pacman -S --noconfirm lzop minicom &&
-myname=`w -h`
-myname=${myname%%tty*}
-sudo gpasswd --add $myname uucp

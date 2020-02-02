@@ -1,4 +1,0 @@
-#!/bin/sh
-echo "installing wqy-zenhei wqy-microhei ..."
-sudo pacman -S --noconfirm wqy-zenhei wqy-microhei &&
-echo "done."
