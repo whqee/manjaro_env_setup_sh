@@ -80,8 +80,9 @@ install_qq_wechat() {
     echo "installing qq-office and wechat ..."
     sudo pacman -S --noconfirm wine-wechat 1>>${the_top_dir}/manjaro_env_setup.log && 
     `wechat -h 1>/dev/null` && echo "wechat installed." || echo "failed to install wechat."
-    sudo pacman -S --noconfirm deepin.com.qq.office gnome-settings-daemon 1>>${the_top_dir}/manjaro_env_setup.log  && echo "TIM installed." || echo "failed to install TIM."
-    sudo sed -i "11i/usr/lib/gsd-xsettings &" /opt/deepinwine/apps/Deepin-TIM/run.sh &&
+    sudo pacman -S --noconfirm deepin.com.qq.office 1>>${the_top_dir}/manjaro_env_setup.log  && echo "TIM installed." || echo "failed to install TIM."
+    #sudo sed -i "11i/usr/lib/gsd-xsettings &" /opt/deepinwine/apps/Deepin-TIM/run.sh &&
+    find /home/$myname -name ".kde4" >/dev/null && sudo cp -b run.sh /opt/deepinwine/apps/Deepin-TIM/run.sh || echo "done."
     echo "exiting script ..."
 }
 

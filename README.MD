@@ -13,9 +13,11 @@ app.list里列出的软件<br>
 ‘sudo ./Setup nvidia’： 默认+n卡驱动。<br>
 ‘sudo ./Setup ruijie’： 默认+锐捷客户端(SCAU)。<br>
 
-装完都可以直接用。不过微信没调，不能开视频，TIM刚开有点占CPU，嫌卡的话可以用qq for linux，CPU占用保持在1%。
+---装完都可以直接用。不过微信和TIM没调，不能用摄像头。观察了段时间，TIM、netease挂后台占CPU3-7%间波动，微信后台基本不占CPU。app.list里加了腾讯官方的qq-linux，可以正常使用，平均占CPU 1%。
 
-其中RJAP为设置锐捷客户端（SCAU）和AP热点的独立文件夹。非SCAU用户请自行更换里面的锐捷客户端。<br>
+---手机安装KDE Connect，很香。
+
+---其中RJAP为设置锐捷客户端（SCAU）和AP热点的独立文件夹。非SCAU用户请自行更换里面的锐捷客户端。<br>
 默认热点id：ee 密码ee123456
 
 设置热点：set_ap_id_passwd {id} {passwd}<br>
