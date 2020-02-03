@@ -87,9 +87,12 @@ install_qq_wechat() {
 }
 
 install_bumblebee_nvidia() {
-    sudo pacman -S --noconfirm bumblebee nvidia opencl-nvidia lib32-nvidia-utils lib32-opencl-nvidia mesa lib32-mesa-libgl xf86-video-int  1>>${the_top_dir}/manjaro_env_setup.log &&
+    sudo mhwd -a pci nonfree 0300 1>>${the_top_dir}/manjaro_env_setup.log || return
+    sudo pacman -S --noconfirm linux-headers bumblebee bbswitch nvidia opencl-nvidia lib32-nvidia-utils lib32-opencl-nvidia mesa lib32-mesa-libgl xf86-video-intel  1>>${the_top_dir}/manjaro_env_setup.log &&
     sudo pacman -S --noconfirm virtualgl lib32-virtualgl lib32-primus primus 1>>${the_top_dir}/manjaro_env_setup.log &&
     sudo sed -i "s/PMMethod=auto/PMMethod=bbswitch/g" /etc/bumblebee/bumblebee.conf 
+    sudo gpasswd -a $myname bumblebee
+    sudo systemctl enable bumblebee
 }
 
 install_ruijie() {

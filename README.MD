@@ -10,8 +10,10 @@ app.list里列出的软件<br>
 ##食用：<br>
 ‘sudo ./Setup’： 默认。除了锐捷和n卡驱动。<br>
 ‘sudo ./Setup all’： 安装全部。<br>
-‘sudo ./Setup nvidia’： 默认+n卡驱动。<br>
+#‘sudo ./Setup nvidia’： 默认+n卡驱动。(暂不支持)<br>
 ‘sudo ./Setup ruijie’： 默认+锐捷客户端(SCAU)。<br>
+
+---n卡驱动，暂请自行安装。设置里装不了的话，可以参考里面脚本和https://www.v2ex.com/t/630119, https://github.com/dglt1/optimus-switch-sddm，到https://www.nvidia.cn/Download/index.aspx?lang=cn下载驱动，手动安装。
 
 ---装完都可以直接用。不过微信和TIM没调，不能用摄像头。观察了段时间，TIM、netease挂后台占CPU3-7%间波动，微信后台基本不占CPU。app.list里加了腾讯官方的qq-linux，可以正常使用，平均占CPU 1%。
 

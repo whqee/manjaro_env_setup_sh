@@ -2,6 +2,8 @@ yay
 lzop
 minicom
 code
+gcc
+make
 wps-office
 ttf-wps-fonts
 bash-completion
