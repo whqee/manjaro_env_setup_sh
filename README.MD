@@ -10,7 +10,7 @@ app.list里列出的软件<br>
 ##食用：<br>
 ‘sudo ./Setup’： 默认。除了锐捷和n卡驱动。<br>
 ‘sudo ./Setup all’： 安装全部。<br>
-#‘sudo ./Setup nvidia’： 默认+n卡驱动。(暂不支持)<br>
+#‘sudo ./Setup nvidia’： 默认+n卡驱动。(发现设置里装更好。暂弃。脚本可参考。)<br>
 ‘sudo ./Setup ruijie’： 默认+锐捷客户端(SCAU)。<br>
 
 ---n卡驱动，暂请自行安装。设置里装不了的话，可以参考里面脚本和https://www.v2ex.com/t/630119, https://github.com/dglt1/optimus-switch-sddm，到https://www.nvidia.cn/Download/index.aspx?lang=cn下载驱动，手动安装。
