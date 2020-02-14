@@ -85,7 +85,7 @@ install_sogoupinyin() {
 
 install_qq_wechat() {
     echo "installing qq-office and deepin wechat(AUR required base-devel )"
-    yay -S --noconfirm deepin-wine-wechat ncurses5-compat-libs 1>>${the_top_dir}/manjaro_env_setup.log && 
+    yay -S --noconfirm deepin-wine-wechat ncurses5-compat-libs deepin-file-manager 1>>${the_top_dir}/manjaro_env_setup.log && 
     #`wechat -h 1>/dev/null` && echo "wechat installed." || echo "failed to install wechat."
     sudo pacman -S --noconfirm deepin.com.qq.office 1>>${the_top_dir}/manjaro_env_setup.log  && echo "TIM installed." || echo "failed to install TIM."
     
