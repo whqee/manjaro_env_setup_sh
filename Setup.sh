@@ -107,7 +107,6 @@ install_bumblebee_nvidia() {
 }
 
 install_ruijie() {
-    tar -axf RJAP.tar.gz
     echo "Entering RJAP folder..."
     cd RJAP && ./install && cd -
     echo "done RJAP. Leaving..."
