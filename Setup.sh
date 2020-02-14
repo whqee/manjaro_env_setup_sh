@@ -42,20 +42,22 @@ install_sogoupinyin() {
     #the_top_dir=${PWD}
     #myname=`w -h`; myname=${myname%%tty*};
     cd /home/$myname;
+    ENV_PATH=
 
     set_env(){
     echo "setuping sogoupinyin ...";
-    echo "export LC_ALL=zh_CN.UTF-8" >> .xprofile
-    echo "export GTK_IM_MODULE=fcitx" >> .xprofile
-    echo "export QT_IM_MODULE=fcitx" >> .xprofile
-    echo "export XMODIFIERS=@im=fcitx" >> .xprofile
+    echo "export LC_ALL=zh_CN.UTF-8" >> $ENV_PATH
+    echo "export GTK_IM_MODULE=fcitx" >> $ENV_PATH
+    echo "export QT_IM_MODULE=fcitx" >> $ENV_PATH
+    echo "export XMODIFIERS=@im=fcitx" >> $ENV_PATH
     }
 
     if [ -e ".xfce4" ];
     then
         echo "xfce4: yes";
-        sudo pacman -S --noconfirm qtwebkit-bin 1>>${the_top_dir}/manjaro_env_setup.log || echo "Please enable AUR.";cd -;exit;
+        sudo yay -S --noconfirm qtwebkit-bin 1>>${the_top_dir}/manjaro_env_setup.log || echo "Please enable AUR and try again.";cd -;exit;
         sudo pacman -S --noconfirm fcitx-im fcitx-configtool fcitx-sogoupinyin fcitx-qt4 1>>${the_top_dir}/manjaro_env_setup.log;
+        ENV_PATH=.xprofile;
         set_env
         echo "done."
     else
@@ -65,11 +67,16 @@ install_sogoupinyin() {
         then
             echo "kde: yes";
             sudo pacman -S --noconfirm kdewebkit fcitx-im kcm-fcitx fcitx-sogoupinyin fcitx-qt4  1>>${the_top_dir}/manjaro_env_setup.log &&
-            set_env
+            ENV_PATH=.xprofile;set_env
             echo "done."
         else
             echo "kde: no";
-            echo "Your environment is not xfce or kde. Please reference the source code and install it by yourself."
+            echo "Your environment is not xfce or kde. Now run option for GNOME Wayland"
+            sudo yay -S --noconfirm qtwebkit-bin 1>>${the_top_dir}/manjaro_env_setup.log || echo "Please enable AUR and try again.";cd -;exit;
+            sudo pacman -S --noconfirm fcitx-im fcitx-configtool fcitx-sogoupinyin fcitx-qt4 1>>${the_top_dir}/manjaro_env_setup.log;
+            ENV_PATH=/etc/environment
+            set_env
+            echo "done."
         fi;
     fi;
 
@@ -77,12 +84,16 @@ install_sogoupinyin() {
 }
 
 install_qq_wechat() {
-    echo "installing qq-office and wechat ..."
-    sudo pacman -S --noconfirm wine-wechat 1>>${the_top_dir}/manjaro_env_setup.log && 
-    `wechat -h 1>/dev/null` && echo "wechat installed." || echo "failed to install wechat."
+    echo "installing qq-office and deepin wechat(AUR required base-devel )"
+    yay -S --noconfirm deepin-wine-wechat ncurses5-compat-libs 1>>${the_top_dir}/manjaro_env_setup.log && 
+    #`wechat -h 1>/dev/null` && echo "wechat installed." || echo "failed to install wechat."
     sudo pacman -S --noconfirm deepin.com.qq.office 1>>${the_top_dir}/manjaro_env_setup.log  && echo "TIM installed." || echo "failed to install TIM."
-    #sudo sed -i "11i/usr/lib/gsd-xsettings &" /opt/deepinwine/apps/Deepin-TIM/run.sh &&
-    find /home/$myname -name ".kde4" >/dev/null && sudo cp -b run.sh /opt/deepinwine/apps/Deepin-TIM/run.sh || echo "done."
+    
+    sudo cp -f WeChat/* /opt/deepinwine/apps/Deepin-WeChat/ &&
+    
+    find /home/$myname -name ".kde4" >/dev/null && sudo pacman -S --noconfirm gnome-settings-daemon && sudo sed -i "11ips -e |grep gsd-xsettings || /usr/lib/gsd-xsettings &" /opt/deepinwine/apps/Deepin-TIM/run.sh && sudo sed -i "93ips -e |grep gsd-xsettings || /usr/lib/gsd-xsettings &" /opt/deepinwine/apps/Deepin-WeChat/run.sh &&
+    sudo sed -i 's/env WINEPREFIX/env GTK_IM_MODULE="fcitx" XMODIFIERS="@im=fcitx" QT_IM_MODULE="fcitx" WINEPREFIX/' /opt/deepinwine/apps/Deepin-WeChat/run.sh
+    #find /home/$myname -name ".kde4" >/dev/null && sudo cp -b run.sh /opt/deepinwine/apps/Deepin-TIM/run.sh || echo "done."
     echo "exiting script ..."
 }
 
@@ -96,6 +107,7 @@ install_bumblebee_nvidia() {
 }
 
 install_ruijie() {
+    tar -axf RJAP.tar.gz
     echo "Entering RJAP folder..."
     cd RJAP && ./install && cd -
     echo "done RJAP. Leaving..."
@@ -164,6 +176,10 @@ sudo pacman -Syy 1>>${the_top_dir}/manjaro_env_setup.log &&
 echo "installing archlinuxcn-keyring and yay ...";
 sudo pacman -S --noconfirm archlinuxcn-keyring yay 1>>${the_top_dir}/manjaro_env_setup.log &&
 echo "exiting pacman_init script ...";
+
+echo "installing base-devel..."
+sudo pacman -S --noconfirm base-devel 
+echo "done. Go to next step... "
 
 ## read flag
 if [ ! -n "$1" ]
