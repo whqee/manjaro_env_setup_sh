@@ -1,6 +1,8 @@
 ## 新装Manjaro 自动化安装软件及配置环境，装完即用。
 最新这次的只测过kde。<br>
-理论上xfce和gnome也没问题，gnome版暂没装过，请看注意事项。
+gnome版暂未测过，理论上都没问题。<br>
+
+因为新版2.8微信在deepinwine不能正常使用，回退了2.6版本，所以里面包含了个2.6的微信安装包，约42.7M，从https://gitee.com/whqee/manjaro_env_setup_sh.git下载或许更快。
 
 ##安装设置的事项有： (自动设置China源、自动挑选最快的3个源，兼顾华南地区用户，加入了SCAU源)
 
@@ -25,18 +27,3 @@ app.list里列出的软件<br>
 设置热点：set_ap_id_passwd {id} {passwd}<br>
 设置锐捷：set_rj_id_passwd {id} {passwd}<br>
 （若无效请使用绝对路径）
-
-##注意事项：
-安装搜狗输入法配置环境变量时候，不同显示管理器配置地方不同：<br>
-KDM, GDM, LightDM 等显示管理器，请使用 ~/.xprofile 
-
-arch wiki 警告: 上述用户不要在~/.xinitrc中加入下述脚本，否则会造成无法登陆。<br>
-如果您用 startx 或者 Slim 启动，请使用~/.xinitrc 中加入<br>
-  export GTK_IM_MODULE=fcitx <br>
-  export QT_IM_MODULE=fcitx <br>
-  export XMODIFIERS=@im=fcitx<br>
-
-如果你使用的是较新版本的GNOME，使用 Wayland 显示管理器，则请在/etc/environment 中加入<br>
-  GTK_IM_MODULE=fcitx<br>
-  QT_IM_MODULE=fcitx<br>
-  XMODIFIERS=@im=fcitx"<br>
