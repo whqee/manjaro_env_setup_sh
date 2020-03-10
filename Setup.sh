@@ -52,10 +52,10 @@ install_sogoupinyin() {
     echo "export XMODIFIERS=@im=fcitx" >> $ENV_PATH
     }
 
-    if [ -e ".xfce4" ];
+    if [ $ENV = "xfce" ];
     then
         echo "xfce4: yes";
-        sudo yay -S --noconfirm qtwebkit-bin 1>>${the_top_dir}/manjaro_env_setup.log || echo "Please enable AUR and try again.";cd -;exit;
+        sudo pacman -S --noconfirm qt5-webkit 1>>${the_top_dir}/manjaro_env_setup.log;
         sudo pacman -S --noconfirm fcitx-im fcitx-configtool fcitx-sogoupinyin fcitx-qt4 1>>${the_top_dir}/manjaro_env_setup.log;
         ENV_PATH=.xprofile;
         set_env
@@ -63,20 +63,24 @@ install_sogoupinyin() {
     else
         echo "xfce: no.";
         
-        if [ -e ".kde4" ];
+        if [ $ENV = "kde" ];
         then
             echo "kde: yes";
             sudo pacman -S --noconfirm kdewebkit fcitx-im kcm-fcitx fcitx-sogoupinyin fcitx-qt4  1>>${the_top_dir}/manjaro_env_setup.log &&
             ENV_PATH=.xprofile;set_env
             echo "done."
         else
-            echo "kde: no";
-            echo "Your environment is not xfce or kde. Now run option for GNOME Wayland"
-            sudo yay -S --noconfirm qtwebkit-bin 1>>${the_top_dir}/manjaro_env_setup.log || echo "Please enable AUR and try again.";cd -;exit;
-            sudo pacman -S --noconfirm fcitx-im fcitx-configtool fcitx-sogoupinyin fcitx-qt4 1>>${the_top_dir}/manjaro_env_setup.log;
-            ENV_PATH=/etc/environment
-            set_env
-            echo "done."
+	    if [ $ENV = "gnome" ];
+	    then
+            	echo "gnome: yes";
+            	sudo pacman -S --noconfirm qt5-webkit 1>>${the_top_dir}/manjaro_env_setup.log;
+            	sudo pacman -S --noconfirm fcitx-im fcitx-configtool fcitx-sogoupinyin fcitx-qt4 1>>${the_top_dir}/manjaro_env_setup.log;
+            	ENV_PATH=/etc/environment
+            	set_env
+            	echo "done."
+	    else
+		echo "Your environment is not specified as xfce or kde or gnome. Skiped."
+	    fi;
         fi;
     fi;
 
@@ -84,16 +88,20 @@ install_sogoupinyin() {
 }
 
 install_qq_wechat() {
+    #the_top_dir=${PWD}
+    myname=`w -h`; myname=${myname%%tty*};
+    
     echo "installing qq-office and deepin wechat(AUR required base-devel )"
-    yay -S --noconfirm deepin-wine-wechat ncurses5-compat-libs deepin-file-manager 1>>${the_top_dir}/manjaro_env_setup.log && 
+    sudo pacman -S --noconfirm ncurses5-compat-libs deepin-file-manager 1>>manjaro_env_setup.log && 
     #`wechat -h 1>/dev/null` && echo "wechat installed." || echo "failed to install wechat."
-    sudo pacman -S --noconfirm deepin.com.qq.office 1>>${the_top_dir}/manjaro_env_setup.log  && echo "TIM installed." || echo "failed to install TIM."
+    sudo pacman -S --noconfirm deepin.com.qq.office 1>>manjaro_env_setup.log  && echo "TIM installed." || echo "failed to install TIM."
     
-    sudo cp -f WeChat/* /opt/deepinwine/apps/Deepin-WeChat/ &&
-    
-    find /home/$myname -name ".kde4" >/dev/null && sudo pacman -S --noconfirm gnome-settings-daemon && sudo sed -i "11ips -e |grep gsd-xsettings || /usr/lib/gsd-xsettings &" /opt/deepinwine/apps/Deepin-TIM/run.sh && sudo sed -i "93ips -e |grep gsd-xsettings || /usr/lib/gsd-xsettings &" /opt/deepinwine/apps/Deepin-WeChat/run.sh &&
+    yay -S --noconfirm deepin-wine-wechat && sudo cp -f WeChat/* /opt/deepinwine/apps/Deepin-WeChat/ &&
+    cd /home/$myname;
+    ls .kde4 >/dev/null && sudo pacman -S --noconfirm gnome-settings-daemon && sudo sed -i "11ips -e |grep gsd-xsettings || /usr/lib/gsd-xsettings &" /opt/deepinwine/apps/Deepin-TIM/run.sh && sudo sed -i "93ips -e |grep gsd-xsettings || /usr/lib/gsd-xsettings &" /opt/deepinwine/apps/Deepin-WeChat/run.sh &&
     sudo sed -i 's/env WINEPREFIX/env GTK_IM_MODULE="fcitx" XMODIFIERS="@im=fcitx" QT_IM_MODULE="fcitx" WINEPREFIX/' /opt/deepinwine/apps/Deepin-WeChat/run.sh
     #find /home/$myname -name ".kde4" >/dev/null && sudo cp -b run.sh /opt/deepinwine/apps/Deepin-TIM/run.sh || echo "done."
+    cd -;
     echo "exiting script ..."
 }
 
@@ -116,14 +124,12 @@ default() {
     install_sogoupinyin
     install_fonts_cn
     install_set_tftpd_nfs
-    install_qq_wechat
 }
 
 everything() {
     install_sogoupinyin
     install_fonts_cn
     install_set_tftpd_nfs
-    install_qq_wechat
     install_bumblebee_nvidia
     install_ruijie
 }
@@ -131,17 +137,22 @@ everything() {
 
 ############### ##########the script runs begin here ######################################################################
 
+ENV=$1
 # print usage
-echo "usage: ./Setup [all][nvidia][ruijie]"
+echo "usage: ./Setup [xfce][kde]gnome] [all][nvidia][ruijie] && ./Setup wechat"
 echo "examples:"
-echo "  sudo ./Setup"
-echo "  sudo ./Setup all"
-echo "  sudo ./Setup nvidia"
-echo "  sudo ./Setup ruijie"
-read -p "Please enter 'Enter' to continue or others to exit: " tmp
+echo "sudo ./Setup xfce && ./Setup wechat"
+echo "sudo ./Setup xfce all && ./Setup wechat"
+echo "sudo ./Setup xfce ruijie && ./Setup wechat"
+read -p "Please check your input, if they're correct then enter 'Enter' to continue" tmp
 if [ "$tmp" = "" ];then echo $tmp;else exit;fi
 
-
+if [ "$1" = "wechat" ]
+then
+    install_qq_wechat;
+    echo "option done. script end."
+    exit;
+fi
 
 # check network
 ping -c 1 114.114.114.114 > /dev/null 2>&1
@@ -171,7 +182,7 @@ echo "added archlinuxcn_tuna to /etc/pacman.conf ";
 sudo sed -i "1iServer = https://mirrors.scau.edu.cn/archlinux/\$repo/os/\$arch" /etc/pacman.d/mirrorlist &&
 echo "added SCAU mirrors(archlinuxcn) to mirrorlist.";
 echo "updating database...";
-sudo pacman -Syy 1>>${the_top_dir}/manjaro_env_setup.log &&
+sudo pacman -Syyu --noconfirm 1>>${the_top_dir}/manjaro_env_setup.log &&
 echo "installing archlinuxcn-keyring and yay ...";
 sudo pacman -S --noconfirm archlinuxcn-keyring yay 1>>${the_top_dir}/manjaro_env_setup.log &&
 echo "exiting pacman_init script ...";
@@ -181,29 +192,25 @@ sudo pacman -S --noconfirm base-devel
 echo "done. Go to next step... "
 
 ## read flag
-if [ ! -n "$1" ]
+
+if [ ! -n "$2" ]
 then
     echo "run default..."
     default
 else
-    if [ "$1" = "all" ]
+    if [ "$2" = "all" ]
     then
         everything
     else
-        if [ "$1" = "nvidia" ]
+        if [ "$2" = "nvidia" ]
         then
             default; install_bumblebee_nvidia;
         else
-            if [ "$1" = "ruijie" ]
+            if [ "$2" = "ruijie" ]
             then
                 default; install_ruijie;
             else
-                echo "usage: ./Setup [all][nvidia][ruijie]"
-                echo "examples:"
-                echo "  ./Setup"
-                echo "  ./Setup all"
-                echo "  ./Setup nvidia"
-                exit
+                echo "wrong input. exit."
             fi
         fi
     fi
@@ -216,4 +223,5 @@ sudo pacman -S --noconfirm `cat app.list` 1>>${the_top_dir}/manjaro_env_setup.lo
 echo "Done all."
 echo "If you wanna run tftpd and nfs-server automatically after boot, enable them yourself by means of:
     systemctl enable tftpd.service
-    systemctl enable nfs-server.service " ;
+    systemctl enable nfs-server.service 
+Now you can run ' ./Setup wechat ' to install deepin wine wechat and qq-office without 'sudo' !" ;
