@@ -40,7 +40,7 @@ install_sogoupinyin() {
 #
     echo "installing sogoupinyin ...";
     #the_top_dir=${PWD}
-    #myname=`w -h`; myname=${myname%%tty*};
+    #myname=`w -h`; myname=${myname%% *};
     cd /home/$myname;
     ENV_PATH=
 
@@ -89,7 +89,7 @@ install_sogoupinyin() {
 
 install_qq_wechat() {
     #the_top_dir=${PWD}
-    myname=`w -h`; myname=${myname%%tty*};
+    myname=`w -h`; myname=${myname%% *};
     
     echo "installing qq-office and deepin wechat(AUR required base-devel )"
     sudo pacman -S --noconfirm ncurses5-compat-libs deepin-file-manager 1>>manjaro_env_setup.log && 
@@ -166,7 +166,7 @@ fi;
 # set variables
 the_top_dir=`pwd`
 myname=`w -h`
-myname=${myname%%tty*}
+myname=${myname%% *}
 
 # add you to group uucp, then you can r/w USB device without sudo.
 sudo gpasswd --add $myname uucp
