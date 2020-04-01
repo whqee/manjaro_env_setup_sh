@@ -1,10 +1,7 @@
----准备改版，暂停更新。若想绝对稳定地使用，添加archlinuxcn源安装完所需软件之后请移除该源，只保留本来的manjaro源。可以开启AUR安装软件到opt，不推荐普通用户使用archlinuxcn源。
+---准备改版，暂停更新。若想绝对稳定地使用，添加archlinuxcn源安装完所需软件之后请移除该源，只保留本来的manjaro源。可以开启AUR安装软件到opt，不推荐普通用户使用archlinuxcn源。  
+Setup脚本内容可作参考
 
 ## 新装Manjaro 自动化安装软件及配置环境，装完即用。
-最新这次的只测过kde。<br>
-gnome版暂未测过，理论上都没问题。<br>
----装机推荐用稳定版cd安装，推荐使用4.19LTS内核
----最新5.4LTS内核：虽然是LTS，但内部很多东西还未稳定，headers都没放出对版的，编译不了n卡驱动，（除非你闲的蛋疼自己去下linux源码自己搞，然后小更内核又g了），deepin wechat里文件右键“show in folder/在文件夹中打开”用不了
 
 因为新版2.8微信在deepinwine不能正常使用，回退了2.6版本，所以里面包含了个2.6的微信安装包，约42.7M，从https://gitee.com/whqee/manjaro_env_setup_sh.git  下载或许更快。
 
